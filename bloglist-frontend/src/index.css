@@ -1,0 +1,19 @@
+html,
+body {
+  height: 100%;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logged {
+  display: inline-block;
+  margin-right: 5px;
+}
