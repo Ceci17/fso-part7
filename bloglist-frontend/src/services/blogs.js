@@ -32,6 +32,11 @@ const update = async (updatedBlog, id) => {
   return response.data
 }
 
+const patch = async (updatedProp, id) => {
+  const response = await axios.patch(`${baseUrl}/${id}`, updatedProp)
+  return response.data
+}
+
 const remove = async (id) => {
   const config = {
     headers: { Authorization: token }
@@ -40,4 +45,4 @@ const remove = async (id) => {
   return response.data
 }
 
-export default { getAll, create, update, remove, setToken }
+export default { getAll, create, update, patch, remove, setToken }

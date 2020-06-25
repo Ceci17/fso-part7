@@ -6,6 +6,7 @@ import {
   notifySuccess,
   notifyError
 } from '../../reducers/notificationReducer'
+import { Form, Button } from './styled'
 import { setUser } from '../../reducers/userReducer'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -44,7 +45,7 @@ const LoginForm = () => {
     }
   }
   return (
-    <form id="login-form" onSubmit={handleLogin}>
+    <Form id="login-form" onSubmit={handleLogin}>
       <Input
         id="username"
         type="text"
@@ -61,8 +62,8 @@ const LoginForm = () => {
         onChange={handleChange}
         placeholder="password"
       />
-      <button type="submit">login</button>
-    </form>
+      <Button type="submit">login</Button>
+    </Form>
   )
 }
 

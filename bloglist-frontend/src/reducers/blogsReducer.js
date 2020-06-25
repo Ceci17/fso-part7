@@ -43,11 +43,13 @@ const blogsReducer = (state = [], action) => {
 
 export const like = (blog) => {
   return async (dispatch) => {
-    const likedBlog = {
-      ...blog,
-      likes: blog.likes + 1
-    }
-    const response = await blogService.update(likedBlog, blog.id)
+    // const likedBlog = {
+    //   ...blog,
+    //   likes: blog.likes + 1
+    // }
+    const likes = blog.likes + 1
+    console.log('like -> likes', likes)
+    const response = await blogService.patch({ likes }, blog.id)
 
     dispatch({
       type: 'LIKE',

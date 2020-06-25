@@ -13,6 +13,7 @@ import { useHistory } from 'react-router-dom'
 import CommentSection from '../CommentSection'
 
 const Blog = ({ blog }) => {
+  console.log('Blog -> blog', blog)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -20,7 +21,7 @@ const Blog = ({ blog }) => {
     dispatch(like(blog))
   }
 
-  const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state?.user)
 
   const handleDelete = async (blog, id) => {
     if (
@@ -46,6 +47,7 @@ const Blog = ({ blog }) => {
       }
     }
   }
+
   if (!blog) return null
 
   return (
@@ -71,7 +73,7 @@ const Blog = ({ blog }) => {
         >
           {blog.user.name}
         </p>
-        {user.username === blog.user.username && (
+        {user?.username === blog?.user?.username && (
           <button
             style={{
               backgroundColor: '#bb2124',

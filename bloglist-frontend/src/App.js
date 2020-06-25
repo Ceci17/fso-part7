@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -19,11 +19,10 @@ import Footer from './components/Footer'
 
 const App = () => {
   const dispatch = useDispatch()
-
+  const [loggedUser, setLoggedUser] = useState(null)
+  console.log('App -> loggedUser', loggedUser)
   const users = useSelector((state) => state.users)
   const blogs = useSelector((state) => state.blogs)
-
-  const loggedUser = useSelector((state) => state.user)
 
   useEffect(() => {
     dispatch(initializeBlogs())
@@ -32,8 +31,10 @@ const App = () => {
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedUser')
+    console.log('useEffect -> loggedUser', loggedUser)
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
+      setLoggedUser(user)
       dispatch(setUser(user))
       blogService.setToken(user.token)
     }
@@ -64,35 +65,15 @@ const App = () => {
           new Date(b.date) - new Date(a.date) || b.title - a.title
       )
   )
-  if (!loggedUser) {
-    return (
-      <>
-        <Main>
-          <Notification />
-          <Switch>
-            <Route path="/login">
-              <LoginForm />
-            </Route>
-          </Switch>
-        </Main>
-      </>
-    )
-  }
 
   return (
     <>
-      <Header />
+      <Header loggedUser={loggedUser} />
 
       <Main>
         <Notification />
 
         <Switch>
-          {!loggedUser && (
-            <Route path="/login">
-              <LoginForm />
-            </Route>
-          )}
-
           <Route exact path="/">
             <BlogList blogs={sortedBlogs} />
           </Route>
@@ -110,6 +91,9 @@ const App = () => {
           </Route>
           <Route path="/users/:id">
             <User user={user} />
+          </Route>
+          <Route path="/login">
+            <LoginForm />
           </Route>
         </Switch>
       </Main>

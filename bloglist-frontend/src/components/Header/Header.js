@@ -10,7 +10,8 @@ import {
 } from './styled'
 import LoggedUser from '../LoggedUser'
 
-const Header = () => {
+const Header = ({ loggedUser }) => {
+  console.log('Header -> loggedUser', loggedUser)
   return (
     <StyledHeader>
       <Logo to="/">B</Logo>
@@ -44,7 +45,15 @@ const Header = () => {
           </NavItem>
         </Nav>
       </FlexWrapper>
-      <LoggedUser />
+      {loggedUser ? (
+        <LoggedUser />
+      ) : (
+        <NavItem>
+          <NLink to="/login" activeClassName="selected">
+            login
+          </NLink>
+        </NavItem>
+      )}
     </StyledHeader>
   )
 }

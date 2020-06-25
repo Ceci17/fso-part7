@@ -21,6 +21,7 @@ const BlogList = ({ blogs }) => {
   const dispatch = useDispatch()
 
   const handleLike = (blog) => {
+    console.log(blog)
     dispatch(like(blog))
   }
 

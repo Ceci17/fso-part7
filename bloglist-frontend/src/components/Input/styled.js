@@ -6,16 +6,16 @@ export const StyledInput = styled.div`
   align-items: center;
   margin-bottom: 2px;
   height: 24px;
+  max-width: 200px;
 `
 
 export const Label = styled.label`
   margin-right: 2px;
   color: #828282;
   font-size: 14px;
-  flex: 1;
   min-width: 50px;
 `
 
 export const Field = styled.input`
-  flex: 7;
+  flex: 1;
 `
